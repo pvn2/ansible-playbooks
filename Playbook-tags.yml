@@ -1,0 +1,43 @@
+#define tags to run specific task
+- hosts: all
+  become: true
+  gather_facts: no
+  vars:
+    package_name: httpd
+    name: ansible
+  tasks:
+  - name: install httpd
+    yum:
+      name: "{{package_name}}"
+      state: present
+    tags:
+    - install
+  - name: copy index file
+    template:
+      src: index.html
+      dest: /var/www/html/index.html
+    tags:
+    - copy
+    notify:
+    - start "{{package_name}}" service
+  - name: debug info
+    debug:
+      msg: "after copy task done"
+    tags:
+    - debug-install
+  handlers:
+  - name: start "{{package_name}}" service
+    service:
+      name: httpd
+      state: started
+    tags:
+    - call-handler
+
+#To see tag list
+#ansible-playbook <play-bookname> --list-tags
+#Execute with tags
+#ansible-playbook <play-bookname> --tags "<tag-name>"
+
+#tags with variable combination:
+#ansible-playbook <play-bookname> --tags "<tag-name>" --extra-vars name="CyberTech"
+#ansible-playbook <play-bookname> --tags "<tag-name>" --extra-vars name="CyberTech" --extra-vars package_name="httpd"

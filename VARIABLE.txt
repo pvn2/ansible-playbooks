@@ -1,0 +1,14 @@
+We can define variable in 4 ways:
+ - Runtime variable
+ - Playbook variable
+ - Group vars
+ - Host vars
+
+Variable refering at run time:
+
+index.html
+----------
+welcome to {{name}}
+
+we can refer the variable using below command 
+ansible-playbook <playbook-name> --extra-vars name="anyname"

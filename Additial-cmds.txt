@@ -1,0 +1,28 @@
+We can see host details
+ansible-playbook <play-bookname> --list-hosts
+
+To execute specific task insted of all task.
+We can use tag
+we can give tag for task and while executing playbook we can give tags
+While exeucting playbook if we dont mentioned anyting it will execute all task
+
+To see tag list
+ansible-playbook <play-bookname> --list-tags
+Execute with tags
+ansible-playbook <play-bookname> --tags "<tag-name>"
+
+tags with variable combination:
+ansible-playbook <play-bookname> --tags "<tag-name>" --extra-vars name="CyberTech"
+ansible-playbook <play-bookname> --tags "<tag-name-1>,<tag-name-2>" --extra-vars name="CyberTech"
+- Note It will execute order which we have define in task and runtime order
+
+All task except few task:
+ansible-playbook <play-bookname> --tags "<tag-name>" --skip-tags "<tag-name>
+
+
+dry-run 
+ansible-playbook <play-bookname> --check
+
+To get module info
+ansible-doc -l |grep <module-name>
+ansible-doc -l |grep "jenkins"
