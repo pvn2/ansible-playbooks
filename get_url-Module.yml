@@ -1,0 +1,12 @@
+---
+- name: get_url module demo
+  hosts: all
+  become: true
+  vars:
+    myurl: "https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.70/bin/apache-tomcat-9.0.70-deployer.tar.gz"
+    mydest: "/opt/"
+  tasks:
+  - name: download file
+    get_url:
+      url: "{{ myurl }}"
+      dest: "{{ mydest }}"

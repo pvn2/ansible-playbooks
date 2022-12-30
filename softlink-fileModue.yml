@@ -1,0 +1,12 @@
+---
+- name: file module demo
+  hosts: all
+  vars:
+    mylink: "/home/ec2-user/exmaple.txt"
+    mysrc: "tofiles"
+  tasks:
+  - name: Creating soft link
+    file:
+      src: "{{ mylink }}"
+      dest: "{{ mysrc }}"
+      state: link

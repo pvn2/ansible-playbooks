@@ -1,0 +1,10 @@
+---
+- name: file module
+  hosts: all
+  vars:
+    myfile: "~/exmaple.txt"
+  tasks:
+  - name: creating empty file
+    file:
+      path: "{{ myfile }}"
+      state: touch
