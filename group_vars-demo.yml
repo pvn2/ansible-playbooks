@@ -1,0 +1,29 @@
+- hosts: all
+  tasks:
+  - name: group vars demo
+    debug:
+      msg: "Var test value is: {{ test }}"
+  - name: copy file
+    template:
+      src: ~/test.txt
+      dest: /tmp/test.txt
+  - name: print content
+    shell: "cat /tmp/test.txt"
+    register: output
+  - name: print file centent
+    debug:
+      msg: "File content is {{ output.stdout }}"
+
+
+Requirement:
+-----------
+I have different server(i.e appServer and dbServer etc) in host inventory file and each server i have to display different conent i.e appServer value is diff and dbServer value is differnt in that case we will go group_vars concet.
+
+group_vars declaration rules:
+-----------------------------
+we can declare group_vars directory under hosts inventory path (i.e /etc/ansible/ default path or custome path)
+default path:
+ /etc/ansible/group_vars/all.yml  (inside file contetn test: 2023)
+ /etc/ansbile/group_vars/appServer.yml (inside file contetn test: 2022)
+ /etc/ansbile/group_vars/dbServer.yml (inside file contetn test: 2023)
+all.yml is optional, if we dont declare specific server yml then for all servers value will be taken from all.yml
