@@ -17,7 +17,14 @@
 
 Requirement:
 -----------
-I have different server(i.e appServer and dbServer etc) in host inventory file and each server i have to display different conent i.e appServer value is diff and dbServer value is differnt in that case we will go group_vars concet.
+I have different server(i.e appServer and dbServer etc) in host inventory file and each server i have to display different conent i.e appServer value is diff and dbServer value is differnt during the playbook execution in that case we will go group_vars concet.
+
+/etc/ansible/hosts
+[appServer]
+172.31.14.52 ansible_user=ec2-user  ansible_ssh_private_key_file=~/file.pem
+
+[dbServer]
+172.31.45.205 ansible_user=ec2-user  ansible_ssh_private_key_file=~/file.pem
 
 group_vars declaration rules:
 -----------------------------
